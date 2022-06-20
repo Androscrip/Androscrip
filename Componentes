@@ -880,7 +880,6 @@ FX = "setting"
     "⬆️ Distancia de movimiento   [".. settings.warpdis  .."] Metros ",
     "🖼️ Fotogramas   [".. getadd(fps,gg.TYPE_FLOAT) .."] Por Segundos ",
 "🌡️ Velocidad  [".. getadd(speedbase,gg.TYPE_FLOAT) .."]",
-"⚙️ Reparar Script",
     "🔘 Botón GG",
     "💾 Guardar",
     "🔙 Exit",
@@ -895,15 +894,12 @@ local nspeed = inputnum(nn)
 if not nspeed then else
 setadd(speedbase,gg.TYPE_FLOAT,nspeed,true) gg.toast("Done") end
 elseif menu == 4 then  
-gg.alert("✅ = Funciona \n❌ = No Funciona")
-reparaciones()
-elseif menu == 5 then  
 if settings.ui == true then settings.ui = false gg.toast("OFF") else settings.ui = true gg.toast("Encendido") end 
 
-    elseif menu == 6 then  
+    elseif menu == 5 then  
     savedata()
     gg.toast("Configuración Guardada ✔️")
-    elseif menu == 7 then  
+    elseif menu == 6 then  
     Main()
   end
   end
