@@ -1,0 +1,24 @@
+   offset = {
+	positX = 0x1B430,
+	positY = 0x1B430+4,
+	positZ = 0x1B430+8,
+	magia = 0x2A500, 
+    energia = 0x20FB4,
+    detectordemapa = 0x3A4,
+    Fuegosartificiales = 0x217A0,
+    flores = 0xC746E4,
+    dormir = 0x229F0,
+    girar = 0x3439F4,
+    GravarVelas = 0xB18488,
+    camara = 0xC2E8220,
+    habilidad_sin_permiso = 0x100B0,
+    habilidad_sin_permiso_emote = 0x100AC,
+    quitarestrellas = 0xC0, --no modificar, funciona con la energía
+    agua = 0x24, --no modificar funciona con la energía
+    alas = 0x189BC, --no modificar, funciona con la energía
+    capainvisible = 0x50, --no modificar, funciona con la energía
+    velas = 0x394, --no modificar
+    speed = 16, --no modificar
+    base = 0x068, --no modificar
+    
+	}
