@@ -1,0 +1,909 @@
+
+function Farm2()
+FX = "Farm2"
+  if #candle == 0 then
+    gg.toast('failed to load coord list!')
+    return;
+  end
+  getmap()
+  if X == "Night" then A_TGC() end
+  if #crarray == 0 then
+    crset.map = X
+    crset.level = 0
+    for k,v in ipairs(candle) do
+      if v.map == X then
+        table.insert(crarray,v)
+      end
+    end
+    if #crarray == 0 then
+      jy=gg.choice({'🔙 Exit',
+    '🦇Estrellas',
+    '🎅🏻Espíritu',
+    '⏩Teletransportarse'
+      },nil,'ID: '..X..'❗No data on this map')
+      if jy == 1 then
+        gg.setVisible(false)
+        crarray = {}
+        crset.level = 0
+        crset.map = ''
+        crset.enable = false
+        Main()
+      end
+      if jy == 2 then
+        alas1()
+      end
+      if jy == 3 then
+        spiritu()
+      end
+      if jy == 4 then
+        Telelist()
+      end
+    end
+  end
+  if X ~= crset.map or #crarray == 0 then
+    crarray = {}
+    crset.level = 0
+    crset.map = ''
+    return;
+  end
+ 
+if unaves == true and X == "SunsetColosseum" then ::ed::  deris = gg.choice({"SI","NO"},0,"Quieres Recojer Las Derris?")
+if deris == nil then goto ed return
+elseif deris == 1 then  
+while true do
+crset.level = crset.level + 1
+gg.sleep(200)
+    Teleport(crarray[crset.level].x,crarray[crset.level].y,crarray[crset.level].z)
+    if crset.level >= 11 then gg.toast("Listo") unaves = false break end
+    end
+elseif deris == 2 then unaves = false
+end
+end 
+  crset.enable = true
+  jy=gg.choice({
+    '➡️Siguiente Punto',
+    '⬅️Punto anterior',
+    '⬆️Romper Muro',
+    '⏩Teletransportarse',
+    '🔁Ejecutar todo',
+    '⏸Lista de coordenadas',
+    '🦇Estrellas',
+    '🎅🏻Espíritu',
+    "🔥Quemador Automático ["..velap.."]",
+    '🗺️Cambiar mapa',
+    "💕Cambiar mapa con amigos",
+    '🔙 Exit',
+  },nil,''..X..' Candle : ' .. crset.level .. '/' .. #crarray)
+  if jy == 1 then
+    if crset.level >= #crarray then
+      crset.level = #crarray - 1
+    end
+    crset.level = crset.level + 1
+    Teleport(crarray[crset.level].x,crarray[crset.level].y,crarray[crset.level].z)
+     gg.setVisible(true)
+  end
+  if jy == 2 then
+    gg.setVisible(true)
+    if crset.level <= 1 then
+      crset.level = 2
+    end
+    crset.level = crset.level - 1
+    Teleport(crarray[crset.level].x,crarray[crset.level].y,crarray[crset.level].z)
+  end
+  if jy == 3 then
+    pmove(settings.warpdis )
+  end
+  if jy == 4 then
+  Telelist()
+  end
+if jy == 5 then
+    gg.setVisible(false)
+    for k,v in ipairs(crarray) do
+      gg.sleep(settings.Friend_Time)
+      if crset.level >= #crarray then
+        gg.toast('done')
+        break
+      end
+if gg.isVisible(true) then 
+menu = gg.choice({
+    "⏹️ Finalizar",
+    "▶️ Continuar",
+    "🏃🏻‍♀️Velocidad de recolección de velas Ms ["..settings.Friend_Time.."]",
+  }, nil, "🛑 Pausa "..crset.level.."/"..#crarray.."")
+  if menu == nil then 
+  elseif menu == 1 then break
+elseif menu == 2 then gg.setVisible(false)
+elseif menu == 3 then settings.Friend_Time =inputnum(nn) savedata()
+end
+ end
+      crset.level = crset.level + 1
+
+      gg.toast(""..crset.level.."/"..#crarray.."\nprecionar GG Modo Pausa🚦")
+
+Teleport(crarray[crset.level].x,crarray[crset.level].y,crarray[crset.level].z)
+    end
+  end
+if jy == 6 then
+    xvw = {}
+    for i,v in ipairs(crarray) do
+      table.insert(xvw,'['..i..'] '..math.floor(v.x)..' / '..math.floor(v.y)..' / '..math.floor(v.z))
+    end
+    xve = gg.choice(xvw,nil,'')
+    if xve == nil then
+      return;
+      else
+      crset.level = xve
+      Teleport(crarray[crset.level].x,crarray[crset.level].y,crarray[crset.level].z)
+    end
+  end
+  if jy == 7 then
+crset.enable = false
+  alas.enable = true
+    alas1()
+  end
+if jy == 8 then
+spiritu()
+  end
+  if jy == 9 then
+    velas() flores()
+end
+    if jy == 10 then
+    changemap() 
+end 
+if jy == 11 then
+teleportamigos()
+end
+if jy == 12 then
+unaves = true
+crset.enable = false
+if siui == true then settings.ui = true Main() else Main() end
+    end end
+       
+  
+function alas1()
+FX = "alas1"
+  if #winslist == 0 then
+    gg.toast('failed to load coord list!')
+    return;
+  end
+  getmap()
+  if #crarrayalas == 0 then
+    alas.map = X
+    alas.level = 0
+    for k,v in ipairs(winslist) do
+      if v.map == X then
+        table.insert(crarrayalas,v)
+      end
+    end
+    if #crarrayalas == 0 then
+      jy=gg.choice({'🔙 Exit',
+    '🕯Velas',
+    '🎅🏻Espíritu',
+    '⏩Teletransportarse',
+      },nil,'ID: '..X..'❗No data on this map')
+      if jy == 1 then
+        gg.setVisible(false)
+        crarrayalas = {}
+        alas.level = 0
+        alas.map = ''
+        alas.enable = false
+        Main()
+      end
+      if jy == 2 then
+        Farm2()
+      end
+      if jy == 3 then
+        spiritu()
+      end
+      if jy == 4 then
+        Telelist()
+      end
+    end
+  end
+  if X ~= alas.map or #crarrayalas == 0 then
+    crarrayalas = {}
+    alas.level = 0
+    alas.map = ''
+    return;
+  end
+  jy=gg.choice({
+    '➡️Siguiente Punto',
+    '⬅️Punto anterior',
+    '⬆️Romper Muro',
+    '🕯Velas',
+    '🎅🏻Espíritu',
+    '⏩Teletransportarse',
+    '⏸Lista de coordenadas',
+    '🗺️Cambiar mapa',
+    "💕Cambiar mapa con amigos",
+    '🔙 Exit',
+  },nil,''..X..'Stars : ' .. alas.level .. '/' .. #crarrayalas)
+  if jy == 1 then
+    gg.setVisible(true)
+    if alas.level >= #crarrayalas then
+      alas.level = #crarrayalas - 1
+    end
+    alas.level = alas.level + 1
+    Teleport(crarrayalas[alas.level].x,crarrayalas[alas.level].y,crarrayalas[alas.level].z)
+  end
+  if jy == 2 then
+    gg.setVisible(true)
+    if alas.level <= 1 then
+      alas.level = 2
+    end
+    alas.level = alas.level - 1
+    Teleport(crarrayalas[alas.level].x,crarrayalas[alas.level].y,crarrayalas[alas.level].z)
+  end
+  if jy == 3 then
+    pmove(settings.warpdis )
+  end
+  if jy == 4 then
+  crset.enable = true
+  spirit.enable = false
+    Farm2()
+  end
+  if jy == 5 then
+    spiritu()
+  end
+  if jy == 6 then
+    Telelist()
+  end
+  if jy == 7 then
+    xvw = {}
+    for i,v in ipairs(crarrayalas) do
+      table.insert(xvw,'['..i..'] '..math.floor(v.x)..' / '..math.floor(v.y)..' / '..math.floor(v.z))
+    end
+    xve = gg.choice(xvw,nil,'')
+    if xve == nil then
+      return;
+      else
+      alas.level = xve
+      Teleport(crarrayalas[alas.level].x,crarrayalas[alas.level].y,crarrayalas[alas.level].z)
+    end
+  end
+  
+    if jy == 8 then
+    changemap() 
+end 
+if jy == 9 then
+teleportamigos()
+end
+if jy == 10 then
+crset.enable = false
+    if siui == true then settings.ui = true Main() else Main() end
+    end
+end
+    
+function spiritu()
+FX = "spiritu"
+  if #winslist == 0 then
+    gg.toast('failed to load coord list!')
+    return;
+  end
+  getmap()
+  if #crarrayspirit == 0 then
+    spirit.map = X
+    spirit.level = 0
+    for k,v in ipairs(espiritus) do
+      if v.map == X then
+        table.insert(crarrayspirit,v)
+      end
+    end
+    if #crarrayspirit == 0 then
+      jy=gg.choice({'🔙 Exit',
+    '🕯Velas',
+    '🦇Estrellas',
+    '⏩Teletransportarse',
+      },nil,'ID: '..X..'❗No data on this map')
+      if jy == 1 then
+        gg.setVisible(false)
+        crarrayspirit = {}
+        spirit.level = 0
+        spirit.map = ''
+        spirit.enable = false
+        Main()
+      end
+      if jy == 2 then
+        Farm2()
+      end
+      if jy == 3 then
+        alas1()
+      end
+      if jy == 4 then
+        Telelist()
+      end
+    end
+  end
+  if X ~= spirit.map or #crarrayspirit == 0 then
+    crarrayspirit = {}
+    spirit.level = 0
+    spirit.map = ''
+    return;
+  end
+  jy=gg.choice({
+    '➡️Siguiente Punto',
+    '⬅️Punto anterior',
+    '⬆️Romper Muro',
+    '🕯Velas',
+    '🦇Estrellas',
+    '⏩Teletransportarse',
+    '⏸Lista de coordenadas',
+    '🗺️Cambiar mapa',
+    "💕Cambiar mapa con amigos",
+    '🔙 Exit',
+  },nil,''..X..'Spirit: ' .. spirit.level .. '/' .. #crarrayspirit)
+  if jy == 1 then
+    gg.setVisible(true)
+    if spirit.level >= #crarrayspirit then
+      spirit.level = #crarrayspirit - 1
+    end
+    spirit.level = spirit.level + 1
+    Teleport(crarrayspirit[spirit.level].x,crarrayspirit[spirit.level].y,crarrayspirit[spirit.level].z)
+  end
+  if jy == 2 then
+    gg.setVisible(true)
+    if spirit.level <= 1 then
+      spirit.level = 2
+    end
+    spirit.level = spirit.level - 1
+    Teleport(crarrayspirit[spirit.level].x,crarrayspirit[spirit.level].y,crarrayspirit[spirit.level].z)
+  end
+  if jy == 3 then
+    pmove(settings.warpdis )
+  end
+  if jy == 4 then
+  crset.enable = true
+  spirit.enable = false
+  
+    Farm2()
+  end
+  if jy == 5 then
+    alas1()
+  end
+  if jy == 6 then
+    Telelist()
+  end
+  if jy == 7 then
+    xvw = {}
+    for i,v in ipairs(crarrayspirit) do
+      table.insert(xvw,'['..i..'] '..math.floor(v.x)..' / '..math.floor(v.y)..' / '..math.floor(v.z))
+    end
+    xve = gg.choice(xvw,nil,'')
+    if xve == nil then
+      return;
+      else
+      spirit.level = xve
+      Teleport(crarrayspirit[spirit.level].x,crarrayspirit[spirit.level].y,crarrayspirit[spirit.level].z)
+    end
+  end
+  
+    if jy == 8 then
+    changemap() 
+end 
+if jy == 9 then
+teleportamigos()
+end
+if jy == 10 then
+crset.enable = false
+    if siui == true then settings.ui = true Main() else Main() end
+    end
+end
+
+
+
+function Word()
+FX = "Word"     
+getmap()
+
+  menu7 = gg.choice({
+    "💠 Ubicación📍",
+    "💠 Dibujar🕹 ",
+    "💠 Teletransporte➡️",
+    "💠 Cambiar Mapa🗺️",
+    "💠Cambiar mapa con amigos💕",
+    "💠 ️Guardar esta ubicación⬇",
+    "💠 Cargar ubicación guardada    " ..math.floor(px).. " "..math.floor(py).." "..math.floor(pz).."",
+    "💠 Avanzar⏏",
+    "💠 Mover hacia arriba⏫",
+    "💠 Mover hacia abajo⏬",
+    "💠 Desbloquear🔑",
+    "💠 Remover Pared De Viento💨",
+    "💠 Despejar Viento💨",
+    "🔙 Exit",
+  }, nil, " 🌍 MUNDO   "..X.."") 
+  if menu7 == 1 then rolePositionMenu() end
+  if menu7 == 2 then dibujar() end
+  if menu7 == 3 then Telelist() end
+  if menu7 == 4 then changemap() end
+if menu7 == 5 then teleportamigos() end
+if menu7 == 6 then getpos() end
+if menu7 == 7 then Teleport(px, py, pz)  end
+if menu7 == 8 then pmove(settings.warpdis ) end
+if menu7 == 9 then Teleport(getadd(base + offset.positX,gg.TYPE_FLOAT), getadd(base + offset.positY,gg.TYPE_FLOAT) + settings.warpdis , getadd(base + offset.positZ,gg.TYPE_FLOAT)) end
+if menu7 == 10 then Teleport(getadd(base + offset.positX,gg.TYPE_FLOAT), getadd(base + offset.positY,gg.TYPE_FLOAT) - settings.warpdis , getadd(base + offset.positZ,gg.TYPE_FLOAT)) end
+if menu7 == 11 then  unlock() end
+if menu7 == 12 then removerviento() end
+if menu7 == 13 then despejarviento() end
+if menu7 == 14 then Main() end
+end
+
+
+
+
+
+
+     
+      
+
+
+
+
+    
+ 
+
+			
+      
+      
+  
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        function camera()
+if not camarareparada then camarareparada = offset.camara end
+FX = "camera"
+if 1 == 1 then
+          y=gg.choice({
+           'Lock yaw'
+           ,'Lock pitch'
+           ,'Lock roll'
+           ,'Auto rotate'
+           ,'Camera distance'
+           ,'Camera height'
+           ,'Camera fov'
+           ,'Camera balance'
+           ,'Camera left/right'
+           ,'Break cutscene'
+           ,'🔙 Exit'
+         },nil,'')
+        if y == 1 then
+          mm = getadd(camarareparada,gg.TYPE_FLOAT)
+          if isfreeze(camarareparada) then
+            setadd(camarareparada,gg.TYPE_FLOAT,mm,false)
+            gg.toast('off')
+          else
+          setadd(camarareparada,gg.TYPE_FLOAT,mm + inputnum(nn),true)
+          gg.toast('on')
+          end
+        end
+        if y == 2 then
+          mm = getadd(camarareparada + 0x4,gg.TYPE_FLOAT)
+          if isfreeze(camarareparada + 0x4) then
+            setadd(camarareparada + 0x4,gg.TYPE_FLOAT,mm,false)
+            gg.toast('off')
+          else
+          setadd(camarareparada + 0x4,gg.TYPE_FLOAT,mm + inputnum(nn),true)
+          gg.toast('on')
+          end
+        end
+        if y == 3 then
+          mm = getadd(camarareparada + 0x8,gg.TYPE_FLOAT)
+          if isfreeze(camarareparada + 0x8) then
+            setadd(camarareparada + 0x8,gg.TYPE_FLOAT,mm,false)
+            gg.toast('off')
+          else
+          setadd(camarareparada + 0x8,gg.TYPE_FLOAT,mm + inputnum(nn),true)
+          gg.toast('on')
+          end
+        end
+        if y == 4 then
+          if isfreeze(camarareparada+0x80) then
+            setadd(camarareparada + 0x80,gg.TYPE_DWORD,1,false)
+            gg.toast('off')
+          else
+            setadd(camarareparada + 0x80,gg.TYPE_DWORD,0,true)
+            gg.toast('on')
+          end
+        end
+        if y == 5 then
+          setadd(camarareparada - 0x8C,gg.TYPE_FLOAT,inputnum(getadd(camarareparada - 0x8C,gg.TYPE_FLOAT)),false)
+        end
+        if y == 6 then
+          if isfreeze(camarareparada-0x5C) then
+            setadd(camarareparada - 0x5C,gg.TYPE_FLOAT,0.5,false)
+            gg.toast('off')
+          else
+            setadd(camarareparada - 0x5C,gg.TYPE_FLOAT,getadd(camarareparada - 0x5C,gg.TYPE_FLOAT) + inputnum(nn),true)
+            gg.toast('on')
+          end
+        end
+        if y == 7 then
+          setadd(camarareparada - 0x9C,gg.TYPE_FLOAT,getadd(camarareparada - 0x9C,gg.TYPE_FLOAT),false)
+          gg.toast("Done")
+        end
+        if y == 8 then
+          if isfreeze(camarareparada-0x20) then
+            setadd(camarareparada - 0x20,gg.TYPE_FLOAT,0.5,false)
+            gg.toast('off')
+          else
+            setadd(camarareparada - 0x20,gg.TYPE_FLOAT,getadd(camarareparada - 0x20,gg.TYPE_FLOAT),true)
+            gg.toast('on')
+          end
+        end
+        --0x394
+        if y == 9 then
+          z=gg.choice({
+           'Disable'
+           ,'Lock left'
+           ,'Lock right'
+         },nil,'')
+          if z == 1 then
+            setadd(camarareparada - 0x394,gg.TYPE_DWORD,65536,false)
+          end
+          if z == 2 then
+            setadd(camarareparada - 0x394,gg.TYPE_DWORD,65536,true)
+          end
+          if z == 3 then
+            setadd(camarareparada - 0x394,gg.TYPE_DWORD,65537,true)
+          end
+        end
+        if y == 10 then
+          if isfreeze(camarareparada+0x478) then
+            setadd(camarareparada+0x478,gg.TYPE_DWORD,65793,false)
+            gg.toast('off')
+          else
+            setadd(camarareparada+0x478,gg.TYPE_DWORD,65793,true)
+            gg.toast('on')
+          end
+         
+          gg.setVisible(false)
+        end
+if y == 11 then Main() end
+        else
+          gg.toast('Hook camera failed!')
+        end
+        
+      end
+        
+        
+
+
+function Farm1()
+
+menu6 = gg.choice({
+     "💠 Quemador Automático ["..velap.."] 🔥",
+     "💠 Buscar Velas con amigos 👫🏻",
+     "💠 Recoger Todas Las Velas 🚀",
+     "💠 Absorbe la luz de las velas 🕯",
+     "🔙 Exit",
+   }, nil, "CANDLE FARM 🕯 ")
+  
+  if(menu6 == nil) then 
+  elseif(menu6 == 1) then flores() velas() 
+  elseif(menu6 == 2) then if settings.ui == true then settings.ui = false siui = true 
+unaves = true Farm2() else unaves = true Farm2() end 
+  elseif(menu6 == 3) then
+StopCandlwRun2 = false
+CandleRun2()
+  elseif(menu6 == 4) then absorvervelas()
+  elseif(menu6 == 5) then Main()
+  end
+  end
+
+
+
+function capaloca() 
+pront=gg.prompt({"Velocidad[1;9]","Mas Lento"}, 
+   {r,x},
+   {'number',
+'checkbox',
+}) 
+   
+     if pront == nil then  return end
+   t = pront[1]
+     velocidad = "0.0"..pront[1]..""
+     
+if pront[2] == true then velocidad = "0.00"..pront[1].."" end
+       
+if not pront then gg.toast("No Pusiste la Velocidad") return end 
+::capasube:: 
+gg.setVisible(false) 
+
+while true do 
+aumento = aumento + velocidad
+
+setadd(base+offset.energia+offset.capainvisible,gg.TYPE_FLOAT,aumento,false) 
+if gg.isVisible(true) then  setadd(base+offset.energia+offset.capainvisible,gg.TYPE_FLOAT,1,false) gg.toast("Off") break end 
+if aumento >= 1 then  
+while true do  
+aumento = aumento - velocidad
+
+setadd(base+offset.energia+offset.capainvisible,gg.TYPE_FLOAT,aumento,false)
+if aumento <= 0 then goto capasube end
+if gg.isVisible(true) then break setadd(base+offset.energia+offset.capainvisible,gg.TYPE_FLOAT,1,false)  gg.toast("Off") break end 
+end 
+end 
+  end
+end 
+
+oscuro = false
+oscuro2 = false      
+    brillo = false
+ agua = false
+ azul = false
+ dormir = false
+ girar = false
+ armario = false
+ emote = false
+ desbloquearamistad = false
+polvo = false
+flygravity = false
+
+function morefunction()
+FX = "morefunction"     
+ menu = gg.choice({
+    "💠 Quitar capa🦇",
+    "💠 Brillo✨",
+    "💠 Polvo Brillante🧚🏻",
+    "💠 Modificar Estrellas⭐",
+    "💠 Lanza Estrellas🌠",
+    "💠 Energía Infinita⚡",
+    "💠 Energía Infinita - Luz Azul🔵",
+    "💠 Niño oscuro⚫",
+    "💠 Niño oscuro + Volar⚫",
+    "💠 Fuegos artificiales🎆",
+    "💠 Súper bocinazos📢",
+    "💠 Dormir💤",
+    "💠 Chispas mágicas✨",
+    "💠 Fiesta en Casa🎊",
+    "💠 Energía submarina🏊🏻‍♂️",
+    "💠 Sube y baja Capa🦇",
+    "💠 Desbloquear Habilidades de Amistad♥️",
+    "💠 Golpear👊",
+    "💠 Resplandor Azul ☄️",
+    "💠 Anti Gravedad🦸🏻",
+    "💠 Desbloquear Todo El Armario y Emotes Maximo👕",
+    "💠 Comprar cabello Ancianos💇🏻",
+    "💠 Briilo Eden🔆",
+    "💠 Usar Habilidades de Amistad sin Permiso♥️ ",
+    "💠 Fly Gravity🎈",
+    "🔙 Exit  ",
+  }, nil, "Características")
+  if menu== 1 then  
+    if capa == "OFF" then capa = "ON" gg.toast("Encendido")  setadd(base+offset.energia+offset.capainvisible,gg.TYPE_FLOAT,0,true)  else capa = "OFF" gg.toast("Apagado") setadd(base+offset.energia+offset.capainvisible,gg.TYPE_FLOAT,1,true) end
+ 
+    elseif menu == 2 then
+if brillo == false then
+setadd(base+offset.energia+0xCC,gg.TYPE_FLOAT,1,true)
+brillo = true gg.toast("Activado")
+else
+setadd(base+offset.energia+0xCC,gg.TYPE_FLOAT,1,false) 
+brillo = false gg.toast("Apagado") end
+elseif menu == 3 then
+if polvo == false then
+setadd(base+offset.energia+0x1C,gg.TYPE_FLOAT,20,true) 
+polvo = true gg.toast("Activado")
+else
+setadd(base+offset.energia+0x1C,gg.TYPE_FLOAT,20,false) 
+polvo = false gg.toast("Apagado") end
+elseif menu == 4 then
+    setadd(base,gg.TYPE_DWORD,inputnum(nn),false)  
+    elseif menu == 5 then
+    setadd(direccion_energia + offset.quitarestrellas,gg.TYPE_DWORD,inputnum(nn),false)  
+    elseif menu == 6 then hola = false
+    if settings.blue == false  then settings.blue = true  setadd(direccion_energia , gg.TYPE_FLOAT,20,true) gg.toast("Encendido") return else settings.blue = false setadd(direccion_energia , gg.TYPE_FLOAT,20,false)   gg.toast("Apagado") end
+    elseif menu == 7 then
+    if azul == false then azul = true setadd(direccion_energia + 4,gg.TYPE_FLOAT,8,false)  setadd(direccion_energia,gg.TYPE_FLOAT,20,false)  gg.toast("Apagado") return else  azul = false setadd(direccion_energia,gg.TYPE_FLOAT,20,true)  setadd(direccion_energia + 4,gg.TYPE_FLOAT,25,true)  gg.toast("Encendido") end
+    elseif menu == 8 then
+    if oscuro == false then setadd(direccion_energia,gg.TYPE_FLOAT,-8,true) oscuro = true gg.toast("ON")  else setadd(direccion_energia,gg.TYPE_FLOAT,25,false) gg.toast("OFF") oscuro = false    end
+    elseif menu == 9 then
+    if oscuro2 == false then nn[7] = {name = 'Energia2',address = direccion_energia + 4,flags = gg.TYPE_FLOAT,value=20,freeze=true} nn[6] = {name = 'Energia1',address = direccion_energia,flags = gg.TYPE_FLOAT,value=-8,freeze=true}  gg.addListItems(nn) oscuro2 = true gg.toast("Encendido")  else nn[6] = {name = 'Energia1',address = direccion_energia,flags = gg.TYPE_FLOAT,value=20,freeze=true} gg.addListItems(nn) oscuro2 = false gg.toast("Apagado") end
+    elseif menu == 10 then
+    fuegosartificiales()
+    elseif menu == 11 then
+    pmagia(1,1725047129,-1) espam()  
+while true do
+gg.toast("Precione el GG Para Detener 🛑")
+gg.sleep(500)
+if gg.isVisible(true) then 
+if settings.empezarmagia == true then pmagia(1,settings.slot1,-1) break else pmagia(1,0,-1) break end
+
+end
+end
+ elseif menu == 12 then  
+ if dormir == false then
+ setadd(base + offset.dormir,gg.TYPE_DWORD,65793,true)  dormir = true gg.toast("Encendido") else setadd(base + offset.dormir,gg.TYPE_DWORD,65793,false)  dormir = false gg.toast("OFF") end
+    elseif menu == 13 then  
+    espam()
+ 
+elseif menu == 14 then  
+getmap()
+gg.alert("tgc Parcheo esta Opcion") 
+if X == "CandleSpace" then
+gg.clearResults() 
+gg.searchNumber(":global", gg.TYPE_BYTE)
+gg.getResults(2000) 
+gg.editAll("0",gg.TYPE_BYTE) gg.toast("Done") else
+gg.toast("Tienes que Estar en Casa Para Activar") return end
+    elseif menu == 15 then  
+   if agua == false then agua = true setadd(base+offset.energia+offset.agua,gg.TYPE_FLOAT,1,true) gg.toast("Encendido") else setadd(base+offset.energia+offset.agua,gg.TYPE_FLOAT,1,false) agua = false  gg.toast("Off") end
+    elseif menu == 16 then  
+    capaloca() 
+while true do
+gg.toast("Precione el GG Para Detener 🛑")
+gg.sleep(2500)
+if gg.isVisible(true) then
+capaloca()
+break
+end
+end
+    elseif menu == 17 then  
+desbloquear_arbol_amistad() 
+elseif menu == 18 then  
+golpear() 
+elseif menu == 19 then  
+while true do
+pmagia(2,3362316915,-1)
+pmagia(1,1097748727,-1)
+pmagia(2,0,-1)
+pmagia(1,0,-1)
+gg.toast("Tienes que estar en el Cuarto Oscuro de Casa!\nPrecione el GG Para Detener 🛑")
+gg.sleep(2500)
+if gg.isVisible(true) then 
+break end
+end
+elseif menu == 20 then  
+mm = getadd(base + offset.positY,gg.TYPE_FLOAT)          
+if not flygrvt then 
+gg.setRanges(gg.REGION_CODE_APP)
+gg.searchNumber('-3.16081619263', gg.TYPE_FLOAT)
+flygrvt = gg.getResults(1)
+
+revertflygravity = flygrvt[1].value
+
+end
+if flygravity == true then
+          flygravity = false
+          flygrvt[1].value = revertflygravity
+          gg.setValues(flygrvt)
+          setadd(base + offset.positY,gg.TYPE_FLOAT,mm,false)
+          gg.toast('flygravity deactivated')
+        else
+          flygravity = true
+          flygrvt[1].value = '5'
+          gg.setValues(flygrvt)
+          setadd(base + offset.positY,gg.TYPE_FLOAT,mm + inputnum(nn),true)
+          gg.toast('flygravity activated')
+        end
+
+          
+          
+elseif menu == 21 then  
+armario_emote() 
+elseif menu == 22 then  
+comprarpelos() 
+elseif menu == 23 then  
+briilar_como_eden()      
+elseif menu == 24 then  
+    veremoteagente()
+    elseif menu == 25 then  
+    if not flygrvt then 
+gg.setRanges(gg.REGION_CODE_APP)
+gg.searchNumber('-3.16081619263', gg.TYPE_FLOAT)
+flygrvt = gg.getResults(1)
+
+revertflygravity = flygrvt[1].value
+
+end
+if flygravity == true then
+          flygravity = false
+          flygrvt[1].value = revertflygravity
+          gg.setValues(flygrvt)
+          gg.toast('flygravity deactivated')
+        else
+          flygravity = true
+          flygrvt[1].value = '6'
+          gg.setValues(flygrvt)
+          gg.toast('flygravity activated')
+        end
+    elseif menu == 26 then  
+    Main()
+ 
+  end
+  end
+
+function Main3()
+  getmap()
+  FX = "Main"
+ menu = gg.choice({
+    "💠 Traspasar ⬆️",
+    "💠 Recoletar ♻️",
+    "💠 Mundo 🌍",
+    "💠 Magia 🔮",
+    "💠 Armario 👔",
+    "💠 Camara 📷",
+    "💠 Más características 🗃️",
+    "💠 Configuración",
+  }, nil, ""..X.."     ")
+    if menu == 1 then
+    pmove(settings.warpdis ) 
+    elseif menu == 2 then
+    Farm1()
+    elseif menu == 3 then
+    Word()
+    elseif menu == 4 then
+    magia() 
+    elseif menu == 5 then
+    M_ssyg()
+    elseif menu == 6 then  
+    camera()
+elseif menu == 7 then  
+morefunction()
+    elseif menu == 8 then  
+    setting()
+  end
+  end
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+    
+function setting()
+detectar_android() 
+FX = "setting"
+ menu = gg.choice({
+    "⬆️ Distancia de movimiento   [".. settings.warpdis  .."] Metros ",
+    "🖼️ Fotogramas   [".. getadd(fps,gg.TYPE_FLOAT) .."] Por Segundos ",
+"🌡️ Velocidad  [".. getadd(speedbase,gg.TYPE_FLOAT) .."]",
+"⚙️ Reparar Script",
+    "🔘 Botón GG",
+    "💾 Guardar",
+    "🔙 Exit",
+  }, nil, "AJUSTE ⚙")
+    if menu == 1 then
+    settings.warpdis = inputnum(nn)
+    elseif menu == 2 then  
+    settings.FPS = inputnum(nn)
+    if not fps then gg.toast("Fps No Encontrado Reinicia el Juego ❗") else setadd(fps,gg.TYPE_FLOAT,settings.FPS,true) end
+    elseif menu == 3 then  
+local nspeed = inputnum(nn)
+if not nspeed then else
+setadd(speedbase,gg.TYPE_FLOAT,nspeed,true) gg.toast("Done") end
+elseif menu == 4 then  
+gg.alert("✅ = Funciona \n❌ = No Funciona")
+reparaciones()
+elseif menu == 5 then  
+if settings.ui == true then settings.ui = false gg.toast("OFF") else settings.ui = true gg.toast("Encendido") end 
+
+    elseif menu == 6 then  
+    savedata()
+    gg.toast("Configuración Guardada ✔️")
+    elseif menu == 7 then  
+    Main()
+  end
+  end
