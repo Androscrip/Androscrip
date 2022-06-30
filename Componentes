@@ -6,7 +6,7 @@ FX = "Farm2"
     return;
   end
   getmap()
-  if X == "Night" then A_TGC() end
+  if X == "Night" then setadd(CambiarCapa,4,2219120716)      end
   if #crarray == 0 then
     crset.map = X
     crset.level = 0
@@ -67,6 +67,7 @@ end
     '⏩Teletransportarse',
     '🔁Ejecutar todo',
     '⏸Lista de coordenadas',
+    '🔒No Guardar Vela',
     '🦇Estrellas',
     '🎅🏻Espíritu',
     "🔥Quemador Automático ["..velap.."]",
@@ -89,6 +90,7 @@ end
     end
     crset.level = crset.level - 1
     Teleport(crarray[crset.level].x,crarray[crset.level].y,crarray[crset.level].z)
+    gg.setVisible(true)
   end
   if jy == 3 then
     pmove(settings.warpdis )
@@ -137,23 +139,34 @@ if jy == 6 then
     end
   end
   if jy == 7 then
+if AbrirVela then
+if getadd(AbrirVela,gg.TYPE_DWORD) == 0 then 
+setadd(AbrirVela,gg.TYPE_DWORD,1,true)
+gg.toast("Encendido")
+else
+setadd(AbrirVela,gg.TYPE_DWORD,0,false)
+gg.toast("Apagado")
+end
+end
+end
+if jy == 8 then
 crset.enable = false
   alas.enable = true
     alas1()
   end
-if jy == 8 then
+if jy == 9 then
 spiritu()
   end
-  if jy == 9 then
+  if jy == 10 then
     velas() flores()
 end
-    if jy == 10 then
+    if jy == 11 then
     changemap() 
 end 
-if jy == 11 then
+if jy == 12 then
 teleportamigos()
 end
-if jy == 12 then
+if jy == 13 then
 unaves = true
 crset.enable = false
 if siui == true then settings.ui = true Main() else Main() end
@@ -396,19 +409,19 @@ FX = "Word"
 getmap()
 
   menu7 = gg.choice({
-    "💠 Ubicación📍",
-    "💠 Dibujar🕹 ",
-    "💠 Teletransporte➡️",
-    "💠 Cambiar Mapa🗺️",
-    "💠Cambiar mapa con amigos💕",
-    "💠 ️Guardar esta ubicación⬇",
-    "💠 Cargar ubicación guardada    " ..math.floor(px).. " "..math.floor(py).." "..math.floor(pz).."",
-    "💠 Avanzar⏏",
-    "💠 Mover hacia arriba⏫",
-    "💠 Mover hacia abajo⏬",
-    "💠 Desbloquear🔑",
-    "💠 Remover Pared De Viento💨",
-    "💠 Despejar Viento💨",
+    "📍 Ubicación",
+    "🕹 Dibujar ",
+    "➡️ Teletransporte",
+    "🗺️ Cambiar Mapa",
+    "💕Cambiar mapa con amigos",
+    "⬇ ️Guardar esta ubicación",
+    "⬆️ Cargar ubicación guardada    " ..math.floor(px).. " "..math.floor(py).." "..math.floor(pz).."",
+    "⏏ Avanzar",
+    "⏫ Mover hacia arriba",
+    "⏬ Mover hacia abajo",
+    "🔑 Desbloquear",
+    "💨 Remover Pared De Viento",
+    "💨 Despejar Viento",
     "🔙 Exit",
   }, nil, " 🌍 MUNDO   "..X.."") 
   if menu7 == 1 then rolePositionMenu() end
@@ -586,10 +599,10 @@ if y == 11 then Main() end
 function Farm1()
 
 menu6 = gg.choice({
-     "💠 Quemador Automático ["..velap.."] 🔥",
-     "💠 Buscar Velas con amigos 👫🏻",
-     "💠 Recoger Todas Las Velas 🚀",
-     "💠 Absorbe la luz de las velas 🕯",
+     "🔥 Quemador Automático ["..velap.."]",
+     "👫🏻 Buscar Velas con amigos",
+     "🚀 Recoger Todas Las Velas",
+     "🕯 Absorbe la luz de las velas",
      "🔙 Exit",
    }, nil, "CANDLE FARM 🕯 ")
   
@@ -605,7 +618,53 @@ CandleRun2()
   end
   end
 
-
+function Main2()
+  FX = "Main"
+ mkjll={
+    "⬆️ Traspasar",
+    "🔁 Recolectar",
+    "🌍 Mundo", 
+    "🔮 Magia",
+    "👔 Armario",
+    "📷 Camara",
+    "🎮 Más características",
+    "💠 Donantes",
+    "🌐 Charla ",
+    "⚙ Configuración",
+  }
+  if poo["menu"]==nil then poo["menu"]=(mkjll) end
+local function split(s, delimiter)
+    result = {};
+    for match in (s..delimiter):gmatch("(.-)"..delimiter) do
+        table.insert(result, match);
+    end
+    return result;
+end  
+local s = split(gg.makeRequest("https://leonkappo3.000webhostapp.com/Chat/Chat.txt")['content'], "\n")
+local sl = s[#s-1].."\n"..s[#s]
+  local menu = gg.choice(poo["menu"], nil, sl.."\n"..username.."") 
+    if menu == 1 then
+pmove(settings.warpdis ) 
+    elseif menu == 2 then
+    Farm1()
+    elseif menu == 3 then
+    Word()
+    elseif menu == 4 then
+    magia() 
+    elseif menu == 5 then
+    CambiarAcc()     
+    elseif menu == 6 then  
+camera()
+elseif menu == 7 then  
+    morefunction()
+    elseif menu == 8 then  
+    
+    elseif menu == 9 then  
+    Chat()
+    elseif menu == 10 then  
+    setting()
+  end
+  end
 
 function capaloca() 
 pront=gg.prompt({"Velocidad[1;9]","Mas Lento"}, 
@@ -657,31 +716,31 @@ flygravity = false
 function morefunction()
 FX = "morefunction"     
  menu = gg.choice({
-    "💠 Quitar capa🦇",
-    "💠 Brillo✨",
-    "💠 Polvo Brillante🧚🏻",
-    "💠 Modificar Estrellas⭐",
-    "💠 Lanza Estrellas🌠",
-    "💠 Energía Infinita⚡",
-    "💠 Energía Infinita - Luz Azul🔵",
-    "💠 Niño oscuro⚫",
-    "💠 Niño oscuro + Volar⚫",
-    "💠 Fuegos artificiales🎆",
-    "💠 Súper bocinazos📢",
-    "💠 Dormir💤",
-    "💠 Chispas mágicas✨",
-    "💠 Fiesta en Casa🎊",
-    "💠 Energía submarina🏊🏻‍♂️",
-    "💠 Sube y baja Capa🦇",
-    "💠 Desbloquear Habilidades de Amistad♥️",
-    "💠 Golpear👊",
-    "💠 Resplandor Azul ☄️",
-    "💠 Anti Gravedad🦸🏻",
-    "💠 Desbloquear Todo El Armario y Emotes Maximo👕",
-    "💠 Comprar cabello Ancianos💇🏻",
-    "💠 Briilo Eden🔆",
-    "💠 Usar Habilidades de Amistad sin Permiso♥️ ",
-    "💠 Fly Gravity🎈",
+    "🦇 Quitar capa",
+    "✨ Brillo",
+    "🧚🏻 Polvo Brillante",
+    "⭐ Modificar Estrellas",
+    "🌠 Lanza Estrellas",
+    "⚡ Energía Infinita",
+    "🔵 Energía Infinita - Luz Azul",
+    "⚫ Niño oscuro",
+    "⚫ Niño oscuro + Volar - Ruido molesto",
+    "🎆 Fuegos artificiales",
+    "📢 Súper bocinazos",
+    "💤 Dormir",
+    "✨ Chispas mágicas",
+    "🎊 Fiesta en Casa",
+    "🏊🏻‍♂️ Energía submarina",
+    "🦇 Sube y baja Capa",
+    "♥️ Desbloquear Habilidades de Amistad",
+    "👊 Golpear  ",
+    "☄️ Resplandor Azul ",
+    "🦸🏻 Anti Gravedad ",
+    "👕 Desbloquear Todo El Armario y Emotes Maximo",
+    "💇🏻 Comprar cabello Ancianos",
+    "🔆 Briilo Eden",
+    "♥️ Usar Habilidades de Amistad sin Permiso ",
+    "🎈 Fly Gravity",
     "🔙 Exit  ",
   }, nil, "Características")
   if menu== 1 then  
@@ -831,14 +890,16 @@ function Main3()
   getmap()
   FX = "Main"
  menu = gg.choice({
-    "💠 Traspasar ⬆️",
-    "💠 Recoletar ♻️",
-    "💠 Mundo 🌍",
-    "💠 Magia 🔮",
-    "💠 Armario 👔",
-    "💠 Camara 📷",
-    "💠 Más características 🗃️",
-    "💠 Configuración",
+    "⬆️ Traspasar ",
+    "🔄 Recoletar",
+    "🌍 Mundo",
+    "🔮 Magia",
+    "👔 Armario",
+    "📷 Camara",
+    "🎮 Más características",
+    "💠 Donantes",
+    "🌐 Charla ",
+    "⚙ Configuración",
   }, nil, ""..X.."     ")
     if menu == 1 then
     pmove(settings.warpdis ) 
@@ -849,12 +910,17 @@ function Main3()
     elseif menu == 4 then
     magia() 
     elseif menu == 5 then
-    M_ssyg()
+    CambiarAcc()     
     elseif menu == 6 then  
     camera()
 elseif menu == 7 then  
 morefunction()
-    elseif menu == 8 then  
+    elseif menu ==8 then  
+    
+    elseif menu == 9 then  
+    Chat()
+    
+    elseif menu == 10 then  
     setting()
   end
   end
@@ -877,29 +943,32 @@ function setting()
 detectar_android() 
 FX = "setting"
  menu = gg.choice({
+    "🚫📡 Quitar Chat del Lobby, Produce Lentitud al Abrir",
     "⬆️ Distancia de movimiento   [".. settings.warpdis  .."] Metros ",
-    "🖼️ Fotogramas   [".. getadd(fps,gg.TYPE_FLOAT) .."] Por Segundos ",
+    "🖼️ Fotogramas   [".. getadd(FPS,gg.TYPE_FLOAT) .."] Por Segundos ",
 "🌡️ Velocidad  [".. getadd(speedbase,gg.TYPE_FLOAT) .."]",
     "🔘 Botón GG",
     "💾 Guardar",
     "🔙 Exit",
   }, nil, "AJUSTE ⚙")
     if menu == 1 then
+    if settings.mains == false then settings.mains = true gg.toast("Encendido") return else settings.mains = false gg.toast("Apagado") end
+    elseif menu == 2 then
     settings.warpdis = inputnum(nn)
-    elseif menu == 2 then  
+    elseif menu == 3 then  
     settings.FPS = inputnum(nn)
     if not fps then gg.toast("Fps No Encontrado Reinicia el Juego ❗") else setadd(fps,gg.TYPE_FLOAT,settings.FPS,true) end
-    elseif menu == 3 then  
+    elseif menu == 4 then  
 local nspeed = inputnum(nn)
 if not nspeed then else
 setadd(speedbase,gg.TYPE_FLOAT,nspeed,true) gg.toast("Done") end
-elseif menu == 4 then  
+elseif menu == 5 then  
 if settings.ui == true then settings.ui = false gg.toast("OFF") else settings.ui = true gg.toast("Encendido") end 
 
-    elseif menu == 5 then  
+    elseif menu == 6 then  
     savedata()
     gg.toast("Configuración Guardada ✔️")
-    elseif menu == 6 then  
+    elseif menu == 7 then  
     Main()
   end
   end
